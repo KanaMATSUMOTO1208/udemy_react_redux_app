@@ -1,6 +1,7 @@
 // import React, {Component} from "react";
 // クラスコンポーネントがコメントアウト→Component誰も使ってないため消してよい
 import React from "react";
+import PropTypes from "prop-types";
 
 
 //関数コンポーネント
@@ -9,7 +10,7 @@ const App = () => {
   const profiles = [
     {name: "Taro", age: 10},
     {name: "Hanako", age: 15},
-    {name: "NoName"}
+    {name: "NoName", age: 3}
   ]
   
   return (
@@ -72,9 +73,18 @@ const User = (props) => {
 //   }
 // }
 
-//デフォルトprops
-User.defaultProps = {
-  age: 1
+//Userコンポーネントに対するprop-typesを定義する →prop-typesを用いた型チェックができる状態になっている
+//nameに文字列以外の型のモノをわたすとエラー、警告が出る
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired
+  //isRequired：ageという属性が必ず設定されていなければダメの意味
 }
+
+
+// //デフォルトprops
+// User.defaultProps = {
+//   age: 1
+// }
 
 export default App;
